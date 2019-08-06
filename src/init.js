@@ -66,8 +66,8 @@ Happy hacking!`);
     .pipe(template(dest, cwd))
     .pipe(vfs.dest(dest))
     .on("end", function() {
-      info("rename", "gitignore -> .gitignore");
-      renameSync(join(dest, "gitignore"), join(dest, ".gitignore"));
+      // info("rename", "gitignore -> .gitignore");
+      // renameSync(join(dest, "gitignore"), join(dest, ".gitignore"));
       if (install) {
         // info("run", "npm install");
         // require("./install")(printSuccess);

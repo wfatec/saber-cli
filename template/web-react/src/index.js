@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-// import App from './react-automata'
-// import App from './use-machine'
-// import App from './easy-peasy'
-import App from './trafficLight-stateMachine';
+import App from './App';
 
 ReactDOM.render(<App />, document.getElementById("root"));
