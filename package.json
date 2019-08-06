@@ -13,17 +13,25 @@
     "react"
   ],
   "bin": {
-    "saber": "./bin/saber-cli.js"
+    "saber-cli": "./bin/saber.js"
+  },
+  "scripts": {
+    "build": "rimraf lib && babel src --out-dir lib"
   },
   "dependencies": {
+    "@babel/runtime": "^7.5.5",
     "chalk": "^2.4.2",
-    "comander": "^0.0.1-security"
+    "comander": "^0.0.1-security",
+    "cross-spawn": "^6.0.5",
+    "rimraf": "^2.6.3",
+    "update-notifier": "^3.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0"
+    "@babel/preset-react": "^7.0.0",
+    "babel-plugin-add-module-exports": "^1.0.2"
   }
 }
