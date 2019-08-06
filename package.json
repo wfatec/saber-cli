@@ -1,0 +1,29 @@
+{
+  "name": "saber",
+  "version": "0.0.1",
+  "description": "A frontend cli based on webpack",
+  "main": "index.js",
+  "repository": "https://github.com/wfatec/saber.git",
+  "author": "wfatec <chao125010@163.com>",
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "webpack",
+    "cli",
+    "react"
+  ],
+  "bin": {
+    "saber": "./bin/saber-cli.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "comander": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0"
+  }
+}
