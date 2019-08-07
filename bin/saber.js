@@ -1,10 +1,5 @@
 #!/usr/bin/env node
 const program = require("commander");
-const join = require("path").join;
-const resolve = require("path").resolve;
-const exists = require("fs").existsSync;
-const readFileSync = require("fs").readFileSync;
-const spawn = require("cross-spawn");
 
 // Notify update when process exits
 const updater = require("update-notifier");
@@ -33,10 +28,6 @@ program
   .usage("<command> [options]")
   .on("--help", printHelp)
   .parse(process.argv);
-
-const aliases = {
-  g: "generate"
-};
 
 /**
  * project init

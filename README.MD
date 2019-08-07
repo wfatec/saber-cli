@@ -2,7 +2,9 @@
 
 - [搭建基于 webpack 的 cli 工具](#搭建基于-webpack-的-cli-工具)
     - [hello saber](#hello-saber)
-    - [生成项目模版](#生成项目模版)
+    - [输出基本信息](#输出基本信息)
+        - [--version](#--version)
+    - [--help](#--help)
 
 <!-- /TOC -->
 
@@ -63,6 +65,38 @@ program
 好了，我们已经实现了一个简单的 cli 工具，是不是非常容易呢！
 
 
-## 生成项目模版
+## 输出基本信息
 
-作为 cli 工具，自动生成标准的项目模版也是最为基础的能力，接下来我们将首先完成该功能
+作为 cli 工具，我们需要能够输出当前的版本号以及帮助信息，幸运的是，基于 commander 我们能够很容易的做到这一点。
+
+### --version
+
+首先我们来实现输出当前版本号的功能。
+
+1. 引入 `package.json`
+
+```js
+const pkg = require("../package.json");
+```
+
+2. 注册 version 命令
+
+```js
+program.version(pkg.version);
+```
+
+完事了？
+
+是的，就这么简单，让我们来测试一下：
+
+```
+node bin/saber.js --version
+```
+
+输出结果为：`0.0.1`。
+
+> 注意：在开发过程中，我们不必每次更改都执行 `npm link` 操作，而是可以直接调用 node 命令来简化测试过程。
+
+实际上，commander 还为我们提供了 `-V` 的简化写法，甚至可以自定义命令！具体可自行查阅官方文档。
+
+## --help
