@@ -13,8 +13,6 @@ const printHelp = () => {
   console.log(
     "    init           Init a new saber application in the current folder"
   );
-  console.log("    new            Creates a new application");
-  console.log('    generate       Generates new code (short-cut alias: "g")');
   console.log();
   console.log(
     "  All commands can be run with -h (or --help) for more information."

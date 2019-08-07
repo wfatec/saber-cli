@@ -1,6 +1,6 @@
 <!-- TOC -->
 
-- [搭建基于 webpack 的 cli 工具](#搭建基于-webpack-的-cli-工具)
+- [搭建 saber-cli 工具](#搭建-saber-cli-工具)
     - [hello saber](#hello-saber)
     - [输出基本信息](#输出基本信息)
         - [--version](#--version)
@@ -8,7 +8,9 @@
 
 <!-- /TOC -->
 
-# 搭建基于 webpack 的 cli 工具
+# 搭建 saber-cli 工具
+
+> 声明：本文参考了 [dva-cli](https://github.com/dvajs/dva-cli) 的部分源码
 
 ## hello saber
 
@@ -64,7 +66,6 @@ program
 
 好了，我们已经实现了一个简单的 cli 工具，是不是非常容易呢！
 
-
 ## 输出基本信息
 
 作为 cli 工具，我们需要能够输出当前的版本号以及帮助信息，幸运的是，基于 commander 我们能够很容易的做到这一点。
@@ -100,3 +101,29 @@ node bin/saber.js --version
 实际上，commander 还为我们提供了 `-V` 的简化写法，甚至可以自定义命令！具体可自行查阅官方文档。
 
 ## --help
+
+与 version 命令类似，help 命令的定义也一场简单：
+
+```js
+const printHelp = () => {
+  console.log("  Commands:");
+  console.log();
+  console.log(
+    "    init           Init a new saber application in the current folder"
+  );
+  console.log();
+  console.log(
+    "  All commands can be run with -h (or --help) for more information."
+  );
+};
+program
+  .usage("<command> [options]")
+  .on("--help", printHelp)
+  .parse(process.argv);
+```
+
+其中 usage 会在执行 help 时打印出来，表示 cli 的基本用法，on 用来监听 help 命令，并执行 printHelp 函数，parse 用于解析命令行参数到 program，便于后续调用。
+
+输入 `node bin/saber.js --help` 测试一下，结果如下：
+
+![saber --help](./static/saber-help.jpg)
