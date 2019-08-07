@@ -4,7 +4,7 @@
     - [hello saber](#hello-saber)
     - [输出基本信息](#输出基本信息)
         - [--version](#--version)
-    - [--help](#--help)
+        - [--help](#--help)
 
 <!-- /TOC -->
 
@@ -100,7 +100,7 @@ node bin/saber.js --version
 
 实际上，commander 还为我们提供了 `-V` 的简化写法，甚至可以自定义命令！具体可自行查阅官方文档。
 
-## --help
+### --help
 
 与 version 命令类似，help 命令的定义也一场简单：
 
