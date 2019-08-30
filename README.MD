@@ -178,3 +178,54 @@ yarn add --dev @babel/preset-env babel-plugin-add-module-exports  @babel/plugin-
 至此，我们已经配置完成了基本的开发环境，接下来就是编写执行脚本了！
 
 ### 编写 init 脚本
+
+首先新建 `/src/init.js` 作为真正的初始化脚本。 
+
+接下来我们需要安装一些好用的工具来帮助我们实现更好的命令行交互体验。
+
+1. [chalk](https://github.com/chalk/chalk#readme) -- 为命令行字符串添加自定义颜色
+
+2. [inquirer](https://github.com/SBoudrias/Inquirer.js#readme) -- 一个用户命令行交互工具
+
+```
+yarn add chalk inquirer
+```
+
+最终的 `init.js` 大概是这样：
+
+```js
+export default (...args) => {
+  console.log();
+  console.log(chalk.bold(chalk.green(`welcome to use saber-cli!`)));
+  console.log();
+
+  inquirer
+    .prompt([
+      {
+        type: "confirm",
+        name: "es6+",
+        message: `Do you insist on using es6+?`,
+        default: true
+      },
+      {
+        type: "list",
+        name: "lib",
+        message: `Do you insist on using react?`,
+        choices: ["react", "vue", "angular", "raw"],
+        default: 0
+      }
+    ])
+    .then(answer => {
+      console.log("answer: ", answer);
+      init(answer);
+    })
+    .catch(e => {
+      console.error(chalk.red(`> Project init failed.`));
+      console.error(e);
+    });
+};
+```
+
+这个段代码的逻辑比较清晰，这里就不赘述了，大概流程是：
+
+欢迎文字 -> 是否支持 ES6 语法 -> 选择需要的前端框架 -> 将选择结果作为 init() 方法的参数并执行 -> 若出现错误则在控制台输出错误信息
