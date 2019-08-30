@@ -5,6 +5,9 @@
     - [输出基本信息](#输出基本信息)
         - [--version](#--version)
         - [--help](#--help)
+    - [自动生成项目模版](#自动生成项目模版)
+        - [配置 babel](#配置-babel)
+        - [编写 init 脚本](#编写-init-脚本)
 
 <!-- /TOC -->
 
@@ -127,3 +130,51 @@ program
 输入 `node bin/saber.js --help` 测试一下，结果如下：
 
 ![saber --help](./static/saber-help.jpg)
+
+## 自动生成项目模版
+
+目前为止我们只是简单的搭了一个架子，接下来我们需要做点实事了，首先我们需要实现的功能就是自动初始化项目，这样可以让我们避免每次初始化项目都要复制黏贴的痛点(当然你也可以选择使用 create-react-app 这样的工具)。
+
+### 配置 babel
+
+当然这里你可以直接使用 node.js 原生的语法，但是为了更加流畅的开发体验，我建议还是通过 babel 来让我们可以自由的使用最新的 ES+ 语法。具体实现可才考我之前的文章 [转译 ES6+类库](https://github.com/wfatec/notebook/tree/master/hacks/compiler#%E8%BD%AC%E8%AF%91es6%E7%B1%BB%E5%BA%93)。这里只做简单介绍：
+
+1. 安装 @babel/cli @babel/core
+
+```
+yarn add --dev @babel/cli @babel/core
+```
+
+2. 配置 script
+
+```json
+"scripts": {
+  "build": "rimraf lib && babel src --out-dir lib"
+},
+```
+
+3. 配置 ES6 语法支持
+
+```
+yarn add --dev @babel/preset-env babel-plugin-add-module-exports  @babel/plugin-transform-runtime
+```
+
+新增 .babelrc 文件
+
+```json
+{
+  "presets": [
+    //es6运行环境
+    "@babel/preset-env",
+  ],
+  "plugins": [
+    // es6 module
+    "add-module-exports",
+    "@babel/plugin-transform-runtime"
+  ]
+}
+```
+
+至此，我们已经配置完成了基本的开发环境，接下来就是编写执行脚本了！
+
+### 编写 init 脚本

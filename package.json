@@ -13,7 +13,7 @@
     "react"
   ],
   "bin": {
-    "saber": "./bin/saber.js"
+    "saber": "./bin/saber-cli.js"
   },
   "scripts": {
     "build": "rimraf lib && babel src --out-dir lib"
